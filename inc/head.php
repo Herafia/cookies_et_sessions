@@ -1,3 +1,14 @@
+<?php
+	if (isset($_GET['logout']))
+	{
+		if ($_GET['logout'] == 0)
+		{
+			session_destroy();
+			header('Location: /login.php');
+		}
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,11 +53,21 @@
               Cart
             </a>
           </li>
+            <li>
+                <a href="index.php?logout=0" class="btn btn-danger navbar-btn">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    Logout
+                </a>
+            </li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
   <div class="container-fluid text-right">
-    <strong>Hello Wilder !</strong>
+    <strong>Hello <?php
+            if(isset($_SESSION['loginname']))
+            {
+		    echo $_SESSION['loginname'];
+            } ?> !</strong>
   </div>
 </header>
